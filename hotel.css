@@ -1,0 +1,81 @@
+/* hotel.css */
+:root{
+  --max-width: 1100px;
+  --gap: 36px;
+  --img-w: 380px;
+  --img-h: 260px;
+}
+
+* { box-sizing: border-box; }
+
+body{
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle, #006400 10%, #013A33 100%);
+  color: #fff;
+  padding: 40px 20px;
+}
+
+/* central column that limits content width */
+.list{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* each hotel row */
+.hotel-box{
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  width: 100%;
+  margin: 50px 0; /* space between rows */
+  /* default: push content to the right for odd blocks (we'll override with nth-child) */
+}
+
+/* push odd rows to the right, even rows to the left */
+.hotel-box:nth-child(odd){
+  justify-content: flex-end;  /* row sits to the right side */
+}
+.hotel-box:nth-child(even){
+  justify-content: flex-start; /* row sits to the left side */
+}
+
+/* image sizing */
+.hotel-img{
+  width: var(--img-w);
+  height: var(--img-h);
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.9);
+  display: block;
+}
+
+/* text block */
+.hotel-text{
+  max-width: calc(100% - var(--img-w) - var(--gap));
+  /* keep readable width and allow it to shrink */
+  font-size: 20px;
+  line-height: 1.4;
+  color: #fff;
+}
+
+/* small screens: stack vertically and center */
+@media (max-width: 760px){
+  .hotel-box{
+    flex-direction: column;
+    justify-content: center !important;
+    text-align: center;
+  }
+
+  .hotel-text{
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .hotel-img{
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+  }
+}
